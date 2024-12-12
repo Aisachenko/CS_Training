@@ -12,7 +12,7 @@ namespace Task1
             _view.DisplayMessage("2. Русский");
 
             var choice = _view.GetInput();
-            _model.selectedLanguage = choice == "1" ? "en" : "ru";
+            _model.SelectedLanguage = choice == "1" ? "en" : "ru";
         }
 
         public void StartGame()
@@ -27,7 +27,7 @@ namespace Task1
             }
 
             _model.SetAvailableLetters(primaryWord);
-            _view.DisplayMessage(_model.GetMessage("Успешно! Первичное слово: "), primaryWord);
+            _view.DisplayMessage(_model.GetMessage("Успешно! Первичное слово: {0}"), primaryWord);
             PlayGame();
         }
 

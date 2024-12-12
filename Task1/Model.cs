@@ -3,7 +3,7 @@ namespace Task1
 
     public class Model
     {
-        public string selectedLanguage { get; set; } = "ru";
+        public string SelectedLanguage { get; set; } = "ru";
         public Dictionary<char, int> AvailableLetters { get; private set; }
         private HashSet<string> usedWords = new HashSet<string>();
 
@@ -54,7 +54,7 @@ namespace Task1
 
         public string GetMessage(string message)
         {
-            if (selectedLanguage == "en")
+            if (SelectedLanguage == "en")
             {
                 switch (message)
                 {
@@ -79,8 +79,7 @@ namespace Task1
                     case "Игрок {0} проиграл! Невозможно использовать слово: {1}\nПричина: {2}":
                         return "Player {0} lost! Unable to use the word: {1}\nReason: {2}";
                     default:
-                        Console.WriteLine("Unable to translate " + message);
-                        return message;
+                        return "Unable to translate "+ message;
                 }
             }
             else
