@@ -1,0 +1,47 @@
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="EnterWordPrompt" xml:space="preserve">
+        <value>Enter a word between 8 and 30 characters:</value>
+    </data>
+    <data name="TryAgainPrompt" xml:space="preserve">
+        <value>Try again: </value>
+    </data>
+    <data name="PrimaryWordSuccess" xml:space="preserve">
+        <value>Success! Primary word: </value>
+    </data>
+    <data name="LengthError" xml:space="preserve">
+        <value>Error: The word length must be between 8 and 30 characters and all characters must be letters.</value>
+    </data>
+    <data name="AlreadyExistsMessage" xml:space="preserve">
+        <value>This word already exists.</value>
+    </data>
+    <data name="AllLettersMessage" xml:space="preserve">
+        <value>All characters must be letters.</value>
+    </data>
+    <data name="InvalidCharacterCountMessage" xml:space="preserve">
+        <value>Contains incorrect number of repeating characters or new characters.</value>
+    </data>
+    <data name="PlayerEnter" xml:space="preserve">
+        <value>Player {0}, enter a word:</value>
+    </data>
+    <data name="PlayerEntered" xml:space="preserve">
+        <value>Player {0} entered the word: {1}</value>
+    </data>
+    <data name="PlayerLoose" xml:space="preserve">
+        <value>Player {0} lost! Unable to use the word: {1}\nReason: {2}</value>
+    </data>
+    <data name="TimeOut" xml:space="preserve">
+        <value>Word input timed out.</value>
+    </data>
+</root>

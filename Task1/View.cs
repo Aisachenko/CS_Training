@@ -12,5 +12,23 @@ namespace Task1
         {
             return Console.ReadLine().ToLower();
         }
+        
+        public (bool, string) GetTimedInput()
+        {
+            string input = "";
+            Thread inputThread = new Thread(() =>
+            {
+                input = Console.ReadLine().ToLower();
+            });
+
+            inputThread.Start();
+
+            if (inputThread.Join(10000))
+                return (false, input);
+            
+            inputThread.Interrupt();
+            return (true, input);
+        }
+      
     }
 }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    
+    <data name="EnterWordPrompt" xml:space="preserve">
+        <value>Введите слово длиной от 8 до 30 символов:</value>
+    </data>
+    <data name="TryAgainPrompt" xml:space="preserve">
+        <value>Попробуйте снова:</value>
+    </data>
+    <data name="AlreadyExistsMessage" xml:space="preserve">
+        <value>Уже есть такое слово.</value>
+    </data>
+    <data name="AllLettersMessage" xml:space="preserve">
+        <value>Все символы должны быть буквы.</value>
+    </data>
+    <data name="InvalidCharacterCountMessage" xml:space="preserve">
+        <value>Содержит неверное количество повторяющихся символов или новые символы.</value>
+    </data>
+    <data name="PrimaryWordSuccess" xml:space="preserve">
+        <value>Успешно! Первичное слово: </value>
+    </data>
+    <data name="LengthError" xml:space="preserve">
+        <value>Ошибка: длина слова должна быть от 8 до 30 символов и все символы - буквы.</value>
+    </data>
+    <data name="PlayerEnter" xml:space="preserve">
+        <value>Игрок {0}, введите слово:</value>
+    </data>
+    <data name="PlayerEntered" xml:space="preserve">
+        <value>Игрок {0} ввел слово: {1}</value>
+    </data>
+    <data name="PlayerLoose" xml:space="preserve">
+        <value>Игрок {0} проиграл! Невозможно использовать слово: {1}\nПричина: {2}</value>
+    </data>
+    <data name="TimeOut" xml:space="preserve">
+        <value>Превышено время ожидания ввода слова.</value>
+    </data>
+</root>

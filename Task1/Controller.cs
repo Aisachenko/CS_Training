@@ -20,15 +20,16 @@ namespace Task1
             SetLanguage();
             string primaryWord;
 
-            _view.DisplayMessage(_model.GetMessage("Введите слово длиной от 8 до 30 символов:"));
+            _view.DisplayMessage(_model.GetMessage("EnterWordPrompt"));
             while (!_model.IsValidPrimaryWord(primaryWord = _view.GetInput()))
             {
-                _view.DisplayMessage(_model.GetMessage("Попробуйте снова: "));
+                _view.DisplayMessage(_model.GetMessage("TryAgainPrompt"));
             }
 
             _model.SetAvailableLetters(primaryWord);
-            _view.DisplayMessage(_model.GetMessage("Успешно! Первичное слово: {0}"), primaryWord);
+            _view.DisplayMessage(_model.GetMessage("PrimaryWordSuccess"), primaryWord);
             PlayGame();
+            return;
         }
 
         private void PlayGame()
@@ -37,23 +38,28 @@ namespace Task1
 
             while (true)
             {
-                _view.DisplayMessage(_model.GetMessage("Игрок {0}, введите слово:"), currentPlayer);
-                string word = _view.GetInput();
+                _view.DisplayMessage(_model.GetMessage("PlayerEnter"), currentPlayer);
+                (bool timeOut, string word) = _view.GetTimedInput();
+                if (timeOut)
+                {
+                    _view.DisplayMessage(_model.GetMessage("TimeOut"));
+                    return; 
+                }
+
                 (bool isValid, string info) = _model.IsValidWord(word);
 
                 if (isValid)
                 {
-                    _view.DisplayMessage(_model.GetMessage("Игрок {0} ввел слово: {1}"), currentPlayer, word);
+                    _view.DisplayMessage(_model.GetMessage("PlayerEntered"), currentPlayer, word);
                     currentPlayer = currentPlayer == 1 ? 2 : 1;
                 }
                 else
                 {
-                    _view.DisplayMessage(
-                        _model.GetMessage("Игрок {0} проиграл! Невозможно использовать слово: {1}\nПричина: {2}"),
-                        currentPlayer, word, info);
-                    break;
+                    _view.DisplayMessage(_model.GetMessage("PlayerLoose"), currentPlayer, word, info);
+                    break; 
                 }
             }
         }
+        
     }
 }
