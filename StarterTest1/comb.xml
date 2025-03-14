@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestProgram>
+  <Record id="2">
+    <Date>2025-03-10T12:50:17</Date>
+    <FirstName>имя</FirstName>
+    <LastName>фамилия</LastName>
+    <SurName>отчество</SurName>
+    <City>город</City>
+    <Country>страна</Country>
+  </Record>
+  <Record id="3">
+    <Date>2025-03-10T12:50:17</Date>
+    <FirstName>dfd</FirstName>
+    <LastName>err</LastName>
+    <SurName>ererf</SurName>
+    <City>vff</City>
+    <Country>sddd</Country>
+  </Record>
+</TestProgram>
