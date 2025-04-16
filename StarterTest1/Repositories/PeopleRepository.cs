@@ -15,9 +15,9 @@ namespace WindowsFormsApp1.Repositories
             _context = context;
         }
 
-        public IEnumerable<People> GetAll()
+        public IQueryable<People> GetAll()
         {
-            return _context.people.ToList();
+            return _context.people;
         }
 
         public People GetById(int id)
@@ -44,6 +44,14 @@ namespace WindowsFormsApp1.Repositories
             {
                 _context.people.Remove(person);
                 _context.SaveChanges();
+            }
+        }
+
+        public void TruncatePeople()
+        {
+            using (var context = new DataContext())
+            {
+                context.Database.ExecuteSqlCommand("TRUNCATE TABLE People");
             }
         }
     }

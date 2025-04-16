@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Threading;
 using WindowsFormsApp1.Services;
+using System.Data.Entity;
 
 namespace WindowsFormsApp1
 {
@@ -79,7 +80,7 @@ namespace WindowsFormsApp1
             {
                 if (selectedId > 0 && selectedId <= guna2DataGridView1.RowCount)
                 {
-                    var person = (People)guna2DataGridView1.Rows[selectedId-1].DataBoundItem;
+                    var person = (People)guna2DataGridView1.Rows[selectedId - 1].DataBoundItem;
                     person.Date = DateUpd.Value;
                     person.FirstName = FirstNameUpd.Text;
                     person.LastName = LastNameUpd.Text;
@@ -106,7 +107,7 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Please enter a valid identifier.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-       
+
         private void FindButton_Click(object sender, EventArgs e, string idInput, Control[] fieldsToUpdate, Guna2Button actionButton, Guna2DateTimePicker datePicker)
         {
             if (int.TryParse(idInput, out int selectedId))
@@ -160,14 +161,14 @@ namespace WindowsFormsApp1
             Control[] fieldsToDelete = { FirstNameDel, LastNameDel, SurNameDel, CityDel, CountryDel };
             FindButton_Click(sender, e, IdDel.Text, fieldsToDelete, DeleteBtn, DateDel);
         }
-        
+
         private void DeleteBtn_Click(object sender, EventArgs e)
         {
             if (int.TryParse(IdDel.Text, out int selectedId))
             {
                 if (selectedId > 0 && selectedId <= guna2DataGridView1.RowCount)
                 {
-                    var person = (People)guna2DataGridView1.Rows[selectedId-1].DataBoundItem;
+                    var person = (People)guna2DataGridView1.Rows[selectedId - 1].DataBoundItem;
                     _peopleRepository.Delete(person.IdPeople);
                     LoadPeople();
                     DateDel.Visible = false;
@@ -191,29 +192,38 @@ namespace WindowsFormsApp1
 
         private async void ExportAllToExcel_Click(object sender, EventArgs e)
         {
-            await Task.Run(() => _dataExportService.ExportToExcel((List<People>)_peopleRepository.GetAll()));
+            var people = _peopleRepository.GetAll().ToList();
+            await _dataExportService.ExportToExcelAsync(people);
         }
 
         private async void ExportCombToExcel_Click(object sender, EventArgs e)
         {
-            var filteredData = await Task.Run(() => FilteredData());
-            await Task.Run(() => _dataExportService.ExportToExcel(filteredData));
+            var filteredData = await FilteredDataAsync();
+            if (filteredData != null)
+            {
+                await _dataExportService.ExportToExcelAsync(filteredData);
+            }
         }
 
         private async void ExportAllToXml_Click(object sender, EventArgs e)
         {
-            await Task.Run(() => _dataExportService.ExportToXml((List<People>)_peopleRepository.GetAll()));
+            var people = _peopleRepository.GetAll().ToList();
+            await _dataExportService.ExportToXmlAsync(people);
         }
 
         private async void ExportCombToXml_Click(object sender, EventArgs e)
         {
-            var filteredData = await Task.Run(() => FilteredData());
-            await Task.Run(() => _dataExportService.ExportToXml(filteredData));
+            var filteredData = await FilteredDataAsync();
+            if (filteredData != null)
+            {
+                await _dataExportService.ExportToXmlAsync(filteredData);
+            }
         }
 
         private async void ExportAllToCsv_Click_1(object sender, EventArgs e)
         {
-            await Task.Run(() => _dataExportService.ExportToCsv((List<People>)_peopleRepository.GetAll()));
+            var people = _peopleRepository.GetAll().ToList();
+            await _dataExportService.ExportToCsvAsync(people);
         }
 
         private async void ImportCsvBtn_Click(object sender, EventArgs e)
@@ -250,17 +260,13 @@ namespace WindowsFormsApp1
 
         private async void RemoveAndImportCSV_Click(object sender, EventArgs e)
         {
-            var allData = await Task.Run(() => _peopleRepository.GetAll());
-            var idsToDelete = allData.Select(data => data.IdPeople).ToList();
-
             using (var progressForm = new ProgressForm())
             {
                 progressForm.Show();
-                var progress = new Progress<int>(value => progressForm.UpdateProgress(value));
-
                 try
                 {
-                    await _dataImportService.BatchDeleteAsync(idsToDelete, progress);
+                    await Task.Run(() => _peopleRepository.TruncatePeople());
+                    MessageBox.Show("All records have been deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
@@ -274,22 +280,24 @@ namespace WindowsFormsApp1
             LoadPeople();
             ImportCsvBtn_Click(sender, e);
         }
-        
-        public List<People> FilteredData()
+
+        public async Task<List<People>> FilteredDataAsync()
         {
-            List<People> data = (List<People>)_peopleRepository.GetAll();
+            List<People> data = await Task.Run(() => _peopleRepository.GetAll().ToList());
             var date = DateExp.Value;
             var firstName = FirstNameExp.Text;
             var lastName = LastNameExp.Text;
             var surName = SurNameExp.Text;
             var city = CityExp.Text;
             var country = CountryExp.Text;
+
             var filteredData = data.Where(p => (p.Date.Date == date.Date || p.Date == null)
-                                                && (p.FirstName.Equals(firstName, StringComparison.OrdinalIgnoreCase) || String.IsNullOrWhiteSpace(firstName))
-                                                && (p.LastName.Equals(lastName, StringComparison.OrdinalIgnoreCase) || String.IsNullOrWhiteSpace(lastName))
-                                                && (p.SurName.Equals(surName, StringComparison.OrdinalIgnoreCase) || String.IsNullOrWhiteSpace(firstName))
-                                                && (p.City.Equals(city, StringComparison.OrdinalIgnoreCase) || String.IsNullOrWhiteSpace(city))
-                                                && (p.Country.Equals(country, StringComparison.OrdinalIgnoreCase) || String.IsNullOrWhiteSpace(country))).ToList();
+                                                && (p.FirstName.Equals(firstName, StringComparison.OrdinalIgnoreCase) || string.IsNullOrWhiteSpace(firstName))
+                                                && (p.LastName.Equals(lastName, StringComparison.OrdinalIgnoreCase) || string.IsNullOrWhiteSpace(lastName))
+                                                && (p.SurName.Equals(surName, StringComparison.OrdinalIgnoreCase) || string.IsNullOrWhiteSpace(surName))
+                                                && (p.City.Equals(city, StringComparison.OrdinalIgnoreCase) || string.IsNullOrWhiteSpace(city))
+                                                && (p.Country.Equals(country, StringComparison.OrdinalIgnoreCase) || string.IsNullOrWhiteSpace(country)))
+                                                .ToList();
 
             if (filteredData.Count == 0)
             {

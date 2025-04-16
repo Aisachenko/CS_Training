@@ -141,26 +141,5 @@ namespace WindowsFormsApp1.Services
             }
         }
 
-        public async Task BatchDeleteAsync(List<int> ids, IProgress<int> progress)
-        {
-            using (var context = new DataContext())
-            {
-                context.Configuration.AutoDetectChangesEnabled = false;
-
-                const int batchSize = 1000;
-                for (int i = 0; i < ids.Count; i += batchSize)
-                {
-                    var batchIds = ids.Skip(i).Take(batchSize).ToList();
-                    var recordsToDelete = context.people.Where(p => batchIds.Contains(p.IdPeople)).ToList();
-
-                    context.people.RemoveRange(recordsToDelete);
-                    await context.SaveChangesAsync();
-
-                    int progressPercentage = (int)((double)(i + batchIds.Count) / ids.Count * 100);
-                    progress.Report(progressPercentage);
-                }
-            }
-        }
-
     }
 }

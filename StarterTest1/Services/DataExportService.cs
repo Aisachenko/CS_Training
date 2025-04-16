@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -21,7 +20,7 @@ namespace WindowsFormsApp1.Services
             _peopleRepository = peopleRepository;
         }
 
-        public void ExportToExcel(List<People> data)
+        public async Task ExportToExcelAsync(List<People> data)
         {
             if (data == null || data.Count == 0)
             {
@@ -60,13 +59,13 @@ namespace WindowsFormsApp1.Services
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     FileInfo excelFile = new FileInfo(saveFileDialog.FileName);
-                    excel.SaveAs(excelFile);
+                    await Task.Run(() => excel.SaveAs(excelFile));
                     MessageBox.Show("Data successfully exported to Excel!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
 
-        public void ExportToXml(List<People> data)
+        public async Task ExportToXmlAsync(List<People> data)
         {
             if (data == null || data.Count == 0)
             {
@@ -93,12 +92,12 @@ namespace WindowsFormsApp1.Services
                         new XElement("Country", person.Country)
                     )
                 );
-                xml.Save(saveFileDialog.FileName);
+                await Task.Run(() => xml.Save(saveFileDialog.FileName));
                 MessageBox.Show("Data successfully exported to XML!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
-        public void ExportToCsv(List<People> data)
+        public async Task ExportToCsvAsync(List<People> data)
         {
             if (data == null || data.Count == 0)
             {
@@ -118,7 +117,7 @@ namespace WindowsFormsApp1.Services
                 {
                     foreach (var person in data)
                     {
-                        writer.WriteLine($"{person.Date:yyyy-MM-dd};{person.FirstName};{person.LastName};{person.SurName};{person.City};{person.Country}");
+                        await writer.WriteLineAsync($"{person.Date:yyyy-MM-dd};{person.FirstName};{person.LastName};{person.SurName};{person.City};{person.Country}");
                     }
                 }
                 MessageBox.Show("Data successfully exported to CSV!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
