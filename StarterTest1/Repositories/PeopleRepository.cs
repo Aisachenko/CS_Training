@@ -47,12 +47,10 @@ namespace WindowsFormsApp1.Repositories
             }
         }
 
-        public void TruncatePeople()
+        public void TruncateTable()
         {
-            using (var context = new DataContext())
-            {
-                context.Database.ExecuteSqlCommand("TRUNCATE TABLE People");
-            }
+            _context.Database.ExecuteSqlCommand("TRUNCATE TABLE People");
+            _context.SaveChanges();
         }
     }
 }

@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "D:\\Work\\cs_iba\\StarterTest1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B861DD3E-C75C-4A0C-960F-E7159DB34C8F}|WindowsFormsApp1.csproj|d:\\work\\cs_iba\\startertest1\\peopletablewindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B861DD3E-C75C-4A0C-960F-E7159DB34C8F}|WindowsFormsApp1.csproj|solutionrelative:peopletablewindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B861DD3E-C75C-4A0C-960F-E7159DB34C8F}|WindowsFormsApp1.csproj|d:\\work\\cs_iba\\startertest1\\peopletablewindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B861DD3E-C75C-4A0C-960F-E7159DB34C8F}|WindowsFormsApp1.csproj|solutionrelative:peopletablewindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B861DD3E-C75C-4A0C-960F-E7159DB34C8F}|WindowsFormsApp1.csproj|D:\\Work\\cs_iba\\StarterTest1\\services\\dataimportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B861DD3E-C75C-4A0C-960F-E7159DB34C8F}|WindowsFormsApp1.csproj|solutionrelative:services\\dataimportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B861DD3E-C75C-4A0C-960F-E7159DB34C8F}|WindowsFormsApp1.csproj|d:\\work\\cs_iba\\startertest1\\peopletablewindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B861DD3E-C75C-4A0C-960F-E7159DB34C8F}|WindowsFormsApp1.csproj|solutionrelative:peopletablewindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B861DD3E-C75C-4A0C-960F-E7159DB34C8F}|WindowsFormsApp1.csproj|d:\\work\\cs_iba\\startertest1\\repositories\\peoplerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B861DD3E-C75C-4A0C-960F-E7159DB34C8F}|WindowsFormsApp1.csproj|solutionrelative:repositories\\peoplerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B861DD3E-C75C-4A0C-960F-E7159DB34C8F}|WindowsFormsApp1.csproj|D:\\Work\\cs_iba\\StarterTest1\\services\\dataexportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B861DD3E-C75C-4A0C-960F-E7159DB34C8F}|WindowsFormsApp1.csproj|solutionrelative:services\\dataexportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B861DD3E-C75C-4A0C-960F-E7159DB34C8F}|WindowsFormsApp1.csproj|d:\\work\\cs_iba\\startertest1\\peopletablewindow.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B861DD3E-C75C-4A0C-960F-E7159DB34C8F}|WindowsFormsApp1.csproj|solutionrelative:peopletablewindow.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 141,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,54 +46,53 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PeopleTableWindow.cs",
-              "DocumentMoniker": "D:\\Work\\cs_iba\\StarterTest1\\PeopleTableWindow.cs",
-              "RelativeDocumentMoniker": "PeopleTableWindow.cs",
-              "ToolTip": "D:\\Work\\cs_iba\\StarterTest1\\PeopleTableWindow.cs",
-              "RelativeToolTip": "PeopleTableWindow.cs",
-              "ViewState": "AgIAANQAAAAAAAAAAAAUwB8BAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T14:08:41.904Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DataExportService.cs",
-              "DocumentMoniker": "D:\\Work\\cs_iba\\StarterTest1\\Services\\DataExportService.cs",
-              "RelativeDocumentMoniker": "Services\\DataExportService.cs",
-              "ToolTip": "D:\\Work\\cs_iba\\StarterTest1\\Services\\DataExportService.cs",
-              "RelativeToolTip": "Services\\DataExportService.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBYAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T15:39:48.438Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "PeopleRepository.cs",
               "DocumentMoniker": "D:\\Work\\cs_iba\\StarterTest1\\Repositories\\PeopleRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\PeopleRepository.cs",
               "ToolTip": "D:\\Work\\cs_iba\\StarterTest1\\Repositories\\PeopleRepository.cs",
               "RelativeToolTip": "Repositories\\PeopleRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwDQAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T09:26:54.108Z",
+              "WhenOpened": "2025-04-26T10:56:05.827Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PeopleTableWindow.cs [Design]",
+              "DocumentMoniker": "D:\\Work\\cs_iba\\StarterTest1\\PeopleTableWindow.cs",
+              "RelativeDocumentMoniker": "PeopleTableWindow.cs",
+              "ToolTip": "D:\\Work\\cs_iba\\StarterTest1\\PeopleTableWindow.cs [Design]*",
+              "RelativeToolTip": "PeopleTableWindow.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T10:37:31.551Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PeopleTableWindow.Designer.cs",
+              "DocumentMoniker": "D:\\Work\\cs_iba\\StarterTest1\\PeopleTableWindow.Designer.cs",
+              "RelativeDocumentMoniker": "PeopleTableWindow.Designer.cs",
+              "ToolTip": "D:\\Work\\cs_iba\\StarterTest1\\PeopleTableWindow.Designer.cs*",
+              "RelativeToolTip": "PeopleTableWindow.Designer.cs*",
+              "ViewState": "AgIAACwCAAAAAAAAAAAawEcCAABWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-25T14:12:08.519Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "DataImportService.cs",
-              "DocumentMoniker": "D:\\Work\\cs_iba\\StarterTest1\\Services\\DataImportService.cs",
-              "RelativeDocumentMoniker": "Services\\DataImportService.cs",
-              "ToolTip": "D:\\Work\\cs_iba\\StarterTest1\\Services\\DataImportService.cs",
-              "RelativeToolTip": "Services\\DataImportService.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAcwI0AAAAJAAAAAAAAAA==",
+              "Title": "PeopleTableWindow.cs",
+              "DocumentMoniker": "D:\\Work\\cs_iba\\StarterTest1\\PeopleTableWindow.cs",
+              "RelativeDocumentMoniker": "PeopleTableWindow.cs",
+              "ToolTip": "D:\\Work\\cs_iba\\StarterTest1\\PeopleTableWindow.cs*",
+              "RelativeToolTip": "PeopleTableWindow.cs*",
+              "ViewState": "AgIAACkAAAAAAAAAAAAnwJ4AAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T15:39:11.175Z",
+              "WhenOpened": "2025-04-07T14:08:41.904Z",
               "EditorCaption": ""
             }
           ]

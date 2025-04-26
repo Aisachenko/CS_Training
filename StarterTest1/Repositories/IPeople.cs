@@ -11,6 +11,6 @@ namespace WindowsFormsApp1.Repositories
         void Add(People person);
         void Update(People person);
         void Delete(int id);
-        void TruncatePeople();
+        void TruncateTable();
     }
 }

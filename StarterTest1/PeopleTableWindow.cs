@@ -158,6 +158,7 @@ namespace WindowsFormsApp1
 
         private void FindDelBtn_Click(object sender, EventArgs e)
         {
+            DeleteAllBtn.Visible = false;
             Control[] fieldsToDelete = { FirstNameDel, LastNameDel, SurNameDel, CityDel, CountryDel };
             FindButton_Click(sender, e, IdDel.Text, fieldsToDelete, DeleteBtn, DateDel);
         }
@@ -178,6 +179,7 @@ namespace WindowsFormsApp1
                     CityDel.Visible = false;
                     CountryDel.Visible = false;
                     DeleteBtn.Visible = false;
+                    DeleteAllBtn.Visible = true;
                 }
                 else
                 {
@@ -198,7 +200,7 @@ namespace WindowsFormsApp1
 
         private async void ExportCombToExcel_Click(object sender, EventArgs e)
         {
-            var filteredData = await FilteredDataAsync();
+            var filteredData = await FilterData();
             if (filteredData != null)
             {
                 await _dataExportService.ExportToExcelAsync(filteredData);
@@ -213,14 +215,14 @@ namespace WindowsFormsApp1
 
         private async void ExportCombToXml_Click(object sender, EventArgs e)
         {
-            var filteredData = await FilteredDataAsync();
+            var filteredData = await FilterData();
             if (filteredData != null)
             {
                 await _dataExportService.ExportToXmlAsync(filteredData);
             }
         }
 
-        private async void ExportAllToCsv_Click_1(object sender, EventArgs e)
+        private async void ExportAllToCsv_Click(object sender, EventArgs e)
         {
             var people = _peopleRepository.GetAll().ToList();
             await _dataExportService.ExportToCsvAsync(people);
@@ -258,52 +260,74 @@ namespace WindowsFormsApp1
             }
         }
 
-        private async void RemoveAndImportCSV_Click(object sender, EventArgs e)
+        private async void DeleteAllBtn_Click(object sender, EventArgs e)
         {
             using (var progressForm = new ProgressForm())
             {
                 progressForm.Show();
                 try
                 {
-                    await Task.Run(() => _peopleRepository.TruncatePeople());
+                    await Task.Run(() => _peopleRepository.TruncateTable());
                     MessageBox.Show("All records have been deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Error during deletion: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                finally
-                {
-                    progressForm.Close();
-                }
+                progressForm.Close();
             }
             LoadPeople();
-            ImportCsvBtn_Click(sender, e);
         }
 
-        public async Task<List<People>> FilteredDataAsync()
+        public async Task<List<People>> FilterData()
         {
-            List<People> data = await Task.Run(() => _peopleRepository.GetAll().ToList());
-            var date = DateExp.Value;
+            var date = DateExp.Value.Date;
             var firstName = FirstNameExp.Text;
             var lastName = LastNameExp.Text;
             var surName = SurNameExp.Text;
             var city = CityExp.Text;
             var country = CountryExp.Text;
 
-            var filteredData = data.Where(p => (p.Date.Date == date.Date || p.Date == null)
-                                                && (p.FirstName.Equals(firstName, StringComparison.OrdinalIgnoreCase) || string.IsNullOrWhiteSpace(firstName))
-                                                && (p.LastName.Equals(lastName, StringComparison.OrdinalIgnoreCase) || string.IsNullOrWhiteSpace(lastName))
-                                                && (p.SurName.Equals(surName, StringComparison.OrdinalIgnoreCase) || string.IsNullOrWhiteSpace(surName))
-                                                && (p.City.Equals(city, StringComparison.OrdinalIgnoreCase) || string.IsNullOrWhiteSpace(city))
-                                                && (p.Country.Equals(country, StringComparison.OrdinalIgnoreCase) || string.IsNullOrWhiteSpace(country)))
-                                                .ToList();
+            IQueryable<People> query = _peopleRepository.GetAll();
+
+            if (date != null)
+            {
+                query = query.Where(p => p.Date == null || DbFunctions.TruncateTime(p.Date) == date);
+            }
+
+            if (!string.IsNullOrWhiteSpace(firstName))
+            {
+                query = query.Where(p => p.FirstName.Equals(firstName, StringComparison.OrdinalIgnoreCase));
+            }
+
+            if (!string.IsNullOrWhiteSpace(lastName))
+            {
+                query = query.Where(p => p.LastName.Equals(lastName, StringComparison.OrdinalIgnoreCase));
+            }
+
+            if (!string.IsNullOrWhiteSpace(surName))
+            {
+                query = query.Where(p => p.SurName.Equals(surName, StringComparison.OrdinalIgnoreCase));
+            }
+
+            if (!string.IsNullOrWhiteSpace(city))
+            {
+                query = query.Where(p => p.City.Equals(city, StringComparison.OrdinalIgnoreCase));
+            }
+
+            if (!string.IsNullOrWhiteSpace(country))
+            {
+                query = query.Where(p => p.Country.Equals(country, StringComparison.OrdinalIgnoreCase));
+            }
+
+            List<People> filteredData = await query.ToListAsync();
 
             if (filteredData.Count == 0)
             {
                 MessageBox.Show("There is no data to export for the given criteria.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
+
             return filteredData;
         }
     }
